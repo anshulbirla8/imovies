@@ -58,3 +58,12 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+// GET /api/auth/me
+exports.getMe = async (req, res) => {
+  res.json({
+    _id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    role: req.user.role,
+  });
+};
