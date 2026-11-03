@@ -43,3 +43,28 @@ exports.getMovieById = async (req, res) => {
     res.status(400).json({ message: "Invalid movie id" });
   }
 };
+
+// PUT /api/movies/:id (admin)
+exports.updateMovie = async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    if (!movie) return res.status(404).json({ message: "Movie not found" });
+    res.json(movie);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// DELETE /api/movies/:id (admin)
+exports.deleteMovie = async (req, res) => {
+  try {
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+    if (!movie) return res.status(404).json({ message: "Movie not found" });
+    res.json({ message: "Movie deleted" });
+  } catch (err) {
+    res.status(400).json({ message: "Invalid movie id" });
+  }
+};

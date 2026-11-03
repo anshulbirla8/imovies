@@ -5,6 +5,8 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const movieRoutes = require("./routes/movieRoutes");
+const theatreRoutes = require("./routes/theatreRoutes");
+const showRoutes = require("./routes/showRoutes");
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/movies", movieRoutes);
+app.use("/api/theatres", theatreRoutes);
+app.use("/api/shows", showRoutes);
 
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {
