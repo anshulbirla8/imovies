@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const movieRoutes = require("./routes/movieRoutes");
 const theatreRoutes = require("./routes/theatreRoutes");
 const showRoutes = require("./routes/showRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/movies", movieRoutes);
 app.use("/api/theatres", theatreRoutes);
 app.use("/api/shows", showRoutes);
+app.use("/api/bookings", bookingRoutes);                                                                                
 
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {
